@@ -1,0 +1,4 @@
+project_id = "gbsdjaxydvfdgsguduyj"
+
+[functions.basketball-chat]
+verify_jwt = false

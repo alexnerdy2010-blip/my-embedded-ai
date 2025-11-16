@@ -47,6 +47,14 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        court: {
+          wood: "hsl(var(--court-wood))",
+          line: "hsl(var(--court-line))",
+        },
+        basketball: {
+          orange: "hsl(var(--basketball-orange))",
+          brown: "hsl(var(--basketball-brown))",
+        },
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
           foreground: "hsl(var(--sidebar-foreground))",
