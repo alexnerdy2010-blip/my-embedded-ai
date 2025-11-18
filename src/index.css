@@ -9,29 +9,35 @@ All colors MUST be HSL.
 @layer base {
   :root {
     /* Basketball court inspired colors */
-    --background: 30 15% 96%;
-    --foreground: 25 30% 12%;
+    --background: 220 25% 97%;
+    --foreground: 230 20% 15%;
 
     --card: 0 0% 100%;
-    --card-foreground: 25 30% 12%;
+    --card-foreground: 230 20% 15%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 25 30% 12%;
+    --popover-foreground: 230 20% 15%;
 
     /* Basketball orange primary */
-    --primary: 20 90% 50%;
+    --primary: 20 95% 55%;
     --primary-foreground: 0 0% 100%;
 
-    /* Court wood secondary */
-    --secondary: 30 25% 85%;
-    --secondary-foreground: 25 30% 12%;
+    /* Court blue secondary */
+    --secondary: 215 85% 60%;
+    --secondary-foreground: 0 0% 100%;
 
-    --muted: 30 15% 92%;
-    --muted-foreground: 25 15% 45%;
+    --muted: 220 15% 94%;
+    --muted-foreground: 220 12% 50%;
 
-    /* Basketball accent */
-    --accent: 20 85% 55%;
+    /* Basketball accent colors */
+    --accent: 280 75% 65%;
     --accent-foreground: 0 0% 100%;
+    
+    --success: 145 65% 50%;
+    --success-foreground: 0 0% 100%;
+    
+    --warning: 40 95% 55%;
+    --warning-foreground: 25 30% 12%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 100%;
@@ -45,14 +51,18 @@ All colors MUST be HSL.
     /* Custom basketball theme variables */
     --court-wood: 30 20% 82%;
     --court-line: 0 0% 100%;
-    --basketball-orange: 20 90% 50%;
-    --basketball-brown: 25 40% 35%;
+    --basketball-orange: 20 95% 55%;
+    --basketball-blue: 215 85% 60%;
+    --basketball-purple: 280 75% 65%;
+    --basketball-green: 145 65% 50%;
     
-    /* Gradients */
+    /* Vibrant gradients */
     --gradient-court: linear-gradient(135deg, hsl(30 20% 85%), hsl(28 18% 78%));
-    --gradient-basketball: linear-gradient(135deg, hsl(20 90% 50%), hsl(15 85% 45%));
-    --gradient-hero: linear-gradient(135deg, hsl(20 90% 50%) 0%, hsl(25 85% 55%) 50%, hsl(30 80% 60%) 100%);
-    --gradient-card: linear-gradient(145deg, hsl(0 0% 100%) 0%, hsl(30 15% 98%) 100%);
+    --gradient-basketball: linear-gradient(135deg, hsl(20 95% 55%), hsl(15 90% 50%));
+    --gradient-hero: linear-gradient(135deg, hsl(20 95% 55%) 0%, hsl(280 75% 65%) 50%, hsl(215 85% 60%) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(0 0% 100%) 0%, hsl(220 25% 98%) 100%);
+    --gradient-purple: linear-gradient(135deg, hsl(280 75% 65%) 0%, hsl(260 70% 60%) 100%);
+    --gradient-blue: linear-gradient(135deg, hsl(215 85% 60%) 0%, hsl(200 80% 55%) 100%);
     
     /* Shadows */
     --shadow-soft: 0 2px 20px rgba(0, 0, 0, 0.08);
@@ -82,26 +92,32 @@ All colors MUST be HSL.
   }
 
   .dark {
-    --background: 25 25% 8%;
-    --foreground: 30 20% 95%;
+    --background: 230 30% 8%;
+    --foreground: 220 20% 95%;
 
-    --card: 25 20% 12%;
-    --card-foreground: 30 20% 95%;
+    --card: 230 25% 12%;
+    --card-foreground: 220 20% 95%;
 
-    --popover: 25 20% 12%;
-    --popover-foreground: 30 20% 95%;
+    --popover: 230 25% 12%;
+    --popover-foreground: 220 20% 95%;
 
-    --primary: 20 90% 55%;
+    --primary: 20 95% 60%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 25 15% 18%;
-    --secondary-foreground: 30 20% 95%;
+    --secondary: 215 85% 55%;
+    --secondary-foreground: 0 0% 100%;
 
-    --muted: 25 15% 18%;
-    --muted-foreground: 30 15% 60%;
+    --muted: 230 20% 18%;
+    --muted-foreground: 220 15% 65%;
 
-    --accent: 20 85% 60%;
+    --accent: 280 75% 60%;
     --accent-foreground: 0 0% 100%;
+    
+    --success: 145 65% 45%;
+    --success-foreground: 0 0% 100%;
+    
+    --warning: 40 95% 50%;
+    --warning-foreground: 230 30% 8%;
 
     --destructive: 0 62.8% 50%;
     --destructive-foreground: 0 0% 100%;
@@ -112,13 +128,17 @@ All colors MUST be HSL.
     
     --court-wood: 30 15% 20%;
     --court-line: 0 0% 90%;
-    --basketball-orange: 20 90% 55%;
-    --basketball-brown: 25 30% 25%;
+    --basketball-orange: 20 95% 60%;
+    --basketball-blue: 215 85% 55%;
+    --basketball-purple: 280 75% 60%;
+    --basketball-green: 145 65% 45%;
     
     --gradient-court: linear-gradient(135deg, hsl(25 15% 15%), hsl(25 12% 12%));
-    --gradient-basketball: linear-gradient(135deg, hsl(20 90% 55%), hsl(15 85% 50%));
-    --gradient-hero: linear-gradient(135deg, hsl(20 90% 55%) 0%, hsl(25 85% 50%) 50%, hsl(30 80% 45%) 100%);
-    --gradient-card: linear-gradient(145deg, hsl(25 20% 13%) 0%, hsl(25 18% 11%) 100%);
+    --gradient-basketball: linear-gradient(135deg, hsl(20 95% 60%), hsl(15 90% 55%));
+    --gradient-hero: linear-gradient(135deg, hsl(20 95% 60%) 0%, hsl(280 75% 60%) 50%, hsl(215 85% 55%) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(230 25% 13%) 0%, hsl(230 22% 11%) 100%);
+    --gradient-purple: linear-gradient(135deg, hsl(280 75% 60%) 0%, hsl(260 70% 55%) 100%);
+    --gradient-blue: linear-gradient(135deg, hsl(215 85% 55%) 0%, hsl(200 80% 50%) 100%);
     
     --shadow-soft: 0 2px 20px rgba(0, 0, 0, 0.3);
     --shadow-medium: 0 4px 30px rgba(0, 0, 0, 0.4);

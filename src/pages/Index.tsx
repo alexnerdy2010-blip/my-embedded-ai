@@ -172,22 +172,25 @@ const Index = () => {
   };
 
   return (
-    <div className="flex flex-col h-screen bg-gradient-to-br from-background via-background to-muted/20">
+    <div className="flex flex-col h-screen bg-gradient-to-br from-background via-muted/30 to-basketball-blue/5">
       {/* Header */}
-      <header className="border-b border-border/40 bg-gradient-to-r from-card/80 via-card/60 to-card/80 backdrop-blur-md sticky top-0 z-10 shadow-sm">
+      <header className="border-b-2 border-basketball-orange/20 bg-gradient-to-r from-card via-white to-card backdrop-blur-xl sticky top-0 z-10 shadow-lg">
         <div className="container max-w-5xl mx-auto px-4 py-5">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4">
-              <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-basketball-orange via-primary to-accent flex items-center justify-center shadow-lg hover:scale-105 transition-transform"
+              <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-basketball-orange via-basketball-purple to-basketball-blue flex items-center justify-center shadow-xl hover:scale-110 hover:rotate-12 transition-all duration-300 animate-pulse"
                 style={{
-                  boxShadow: "var(--shadow-glow)"
+                  boxShadow: "0 8px 24px rgba(234, 88, 12, 0.35), 0 0 48px rgba(168, 85, 247, 0.2)"
                 }}
               >
-                <span className="text-white font-bold text-2xl">🏀</span>
+                <span className="text-white font-bold text-3xl">🏀</span>
               </div>
               <div>
-                <h1 className="text-2xl font-bold bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent">RefAI</h1>
-                <p className="text-xs text-muted-foreground font-medium">FIBA 2024 Official Rules • 278 pages embedded</p>
+                <h1 className="text-2xl font-bold bg-gradient-to-r from-basketball-orange via-basketball-purple to-basketball-blue bg-clip-text text-transparent">RefAI</h1>
+                <p className="text-xs text-muted-foreground font-semibold flex items-center gap-1">
+                  <span className="w-2 h-2 rounded-full bg-basketball-green animate-pulse"></span>
+                  FIBA 2024 Official Rules • 278 pages embedded
+                </p>
               </div>
             </div>
             <div className="flex items-center gap-3">
@@ -196,7 +199,7 @@ const Index = () => {
                 variant="outline"
                 size="sm"
                 onClick={handleNewChat}
-                className="gap-2 hover:bg-primary/5 hover:border-primary/30 hover:scale-105 transition-all duration-200 shadow-sm rounded-xl"
+                className="gap-2 bg-gradient-to-r from-basketball-orange/10 to-basketball-purple/10 hover:from-basketball-orange/20 hover:to-basketball-purple/20 border-2 border-basketball-orange/30 hover:border-basketball-orange/50 hover:scale-105 transition-all duration-200 shadow-md rounded-xl font-semibold"
               >
                 <Plus className="w-4 h-4" />
                 <span className="hidden sm:inline">New Chat</span>
@@ -210,16 +213,16 @@ const Index = () => {
       <div className="flex-1 overflow-hidden">
         <ScrollArea className="h-full" ref={scrollRef}>
           <div className="container max-w-4xl mx-auto px-4 py-8">
-            <div className="space-y-5">
+            <div className="space-y-6">
               {messages.map((message, index) => (
                 <ChatMessage key={index} role={message.role} content={message.content} />
               ))}
               {isLoading && (
-                <div className="flex gap-4 p-5 rounded-2xl bg-gradient-to-br from-card/50 to-card/30 border border-border/30 backdrop-blur-sm animate-in fade-in duration-500">
-                  <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-basketball-orange/20 to-primary/10 flex items-center justify-center shadow-sm">
-                    <Loader2 className="w-5 h-5 animate-spin text-basketball-orange" />
+                <div className="flex gap-4 p-6 rounded-2xl bg-gradient-to-br from-basketball-blue/10 via-card to-basketball-purple/5 border-2 border-basketball-blue/30 backdrop-blur-sm animate-in fade-in duration-500 shadow-lg">
+                  <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-basketball-orange/30 via-basketball-purple/20 to-basketball-blue/20 flex items-center justify-center shadow-md">
+                    <Loader2 className="w-6 h-6 animate-spin text-basketball-orange" />
                   </div>
-                  <p className="text-sm text-muted-foreground pt-2.5 font-medium">Analyzing basketball rules...</p>
+                  <p className="text-sm text-foreground pt-3 font-semibold">Analyzing basketball rules...</p>
                 </div>
               )}
             </div>
@@ -228,10 +231,10 @@ const Index = () => {
       </div>
 
       {/* Input Area */}
-      <div className="border-t border-border/40 bg-gradient-to-r from-card/80 via-card/60 to-card/80 backdrop-blur-md shadow-lg">
-        <div className="container max-w-4xl mx-auto px-4 py-5">
+      <div className="border-t-2 border-basketball-orange/20 bg-gradient-to-r from-card via-white to-card backdrop-blur-xl shadow-2xl">
+        <div className="container max-w-4xl mx-auto px-4 py-6">
           <ChatInput onSend={streamChat} disabled={isLoading} />
-          <p className="text-xs text-muted-foreground/80 text-center mt-3 font-medium">
+          <p className="text-xs text-muted-foreground/90 text-center mt-3 font-semibold">
             If you think the answer is wrong ask your assistant to reread it's data base and give you the right answer.
           </p>
         </div>
