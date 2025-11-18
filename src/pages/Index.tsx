@@ -7,10 +7,17 @@ import { Plus, Loader2 } from "lucide-react";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { useToast } from "@/hooks/use-toast";
 
+type FileAttachment = {
+  name: string;
+  type: string;
+  data: string;
+  size: number;
+};
+
 type Message = {
   role: "user" | "assistant";
   content: string;
-  images?: string[];
+  files?: FileAttachment[];
 };
 
 const Index = () => {
@@ -39,9 +46,9 @@ const Index = () => {
     ]);
   };
 
-  const streamChat = async (userMessage: string, images?: string[]) => {
+  const streamChat = async (userMessage: string, files?: FileAttachment[]) => {
     setIsLoading(true);
-    const userMsg: Message = { role: "user", content: userMessage, images };
+    const userMsg: Message = { role: "user", content: userMessage, files };
     setMessages((prev) => [...prev, userMsg]);
 
     try {
@@ -55,16 +62,23 @@ const Index = () => {
         },
         body: JSON.stringify({ 
           messages: [...messages, userMsg].map(m => {
-            if (m.images && m.images.length > 0) {
+            if (m.files && m.files.length > 0) {
+              const contentParts: any[] = [{ type: "text", text: m.content || "Please analyze these files:" }];
+              
+              m.files.forEach(file => {
+                if (file.type.startsWith('image/')) {
+                  contentParts.push({
+                    type: "image_url",
+                    image_url: { url: file.data }
+                  });
+                } else {
+                  contentParts[0].text += `\n\nAttached file: ${file.name} (${(file.size / 1024).toFixed(2)} KB)`;
+                }
+              });
+              
               return {
                 role: m.role,
-                content: [
-                  { type: "text", text: m.content },
-                  ...m.images.map(img => ({
-                    type: "image_url",
-                    image_url: { url: img }
-                  }))
-                ]
+                content: contentParts
               };
             }
             return { role: m.role, content: m.content };
@@ -220,7 +234,7 @@ const Index = () => {
           <div className="container max-w-4xl mx-auto px-4 py-6">
             <div className="space-y-4">
               {messages.map((message, index) => (
-                <ChatMessage key={index} role={message.role} content={message.content} images={message.images} />
+                <ChatMessage key={index} role={message.role} content={message.content} files={message.files} />
               ))}
               {isLoading && (
                 <div className="flex gap-3 p-4">
