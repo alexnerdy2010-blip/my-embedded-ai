@@ -172,30 +172,34 @@ const Index = () => {
   };
 
   return (
-    <div className="flex flex-col h-screen bg-gradient-to-br from-background via-background to-muted/30">
+    <div className="flex flex-col h-screen bg-gradient-to-br from-background via-background to-muted/20">
       {/* Header */}
-      <header className="border-b bg-card/50 backdrop-blur-sm sticky top-0 z-10">
-        <div className="container max-w-5xl mx-auto px-4 py-4">
+      <header className="border-b border-border/40 bg-gradient-to-r from-card/80 via-card/60 to-card/80 backdrop-blur-md sticky top-0 z-10 shadow-sm">
+        <div className="container max-w-5xl mx-auto px-4 py-5">
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-full bg-gradient-to-br from-basketball-orange to-primary flex items-center justify-center">
-                <span className="text-white font-bold text-xl">🏀</span>
+            <div className="flex items-center gap-4">
+              <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-basketball-orange via-primary to-accent flex items-center justify-center shadow-lg hover:scale-105 transition-transform"
+                style={{
+                  boxShadow: "var(--shadow-glow)"
+                }}
+              >
+                <span className="text-white font-bold text-2xl">🏀</span>
               </div>
               <div>
-                <h1 className="text-xl font-bold text-foreground">RefAI</h1>
-                <p className="text-xs text-muted-foreground">FIBA 2024 Official Rules • 278 pages embedded</p>
+                <h1 className="text-2xl font-bold bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent">RefAI</h1>
+                <p className="text-xs text-muted-foreground font-medium">FIBA 2024 Official Rules • 278 pages embedded</p>
               </div>
             </div>
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-3">
               <SourceDataPanel />
               <Button
                 variant="outline"
                 size="sm"
                 onClick={handleNewChat}
-                className="gap-2"
+                className="gap-2 hover:bg-primary/5 hover:border-primary/30 hover:scale-105 transition-all duration-200 shadow-sm rounded-xl"
               >
                 <Plus className="w-4 h-4" />
-                New Chat
+                <span className="hidden sm:inline">New Chat</span>
               </Button>
             </div>
           </div>
@@ -205,17 +209,17 @@ const Index = () => {
       {/* Chat Area */}
       <div className="flex-1 overflow-hidden">
         <ScrollArea className="h-full" ref={scrollRef}>
-          <div className="container max-w-4xl mx-auto px-4 py-6">
-            <div className="space-y-4">
+          <div className="container max-w-4xl mx-auto px-4 py-8">
+            <div className="space-y-5">
               {messages.map((message, index) => (
                 <ChatMessage key={index} role={message.role} content={message.content} />
               ))}
               {isLoading && (
-                <div className="flex gap-3 p-4">
-                  <div className="w-8 h-8 rounded-full bg-basketball-orange/10 flex items-center justify-center">
+                <div className="flex gap-4 p-5 rounded-2xl bg-gradient-to-br from-card/50 to-card/30 border border-border/30 backdrop-blur-sm animate-in fade-in duration-500">
+                  <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-basketball-orange/20 to-primary/10 flex items-center justify-center shadow-sm">
                     <Loader2 className="w-5 h-5 animate-spin text-basketball-orange" />
                   </div>
-                  <p className="text-sm text-muted-foreground pt-2">Analyzing rules...</p>
+                  <p className="text-sm text-muted-foreground pt-2.5 font-medium">Analyzing basketball rules...</p>
                 </div>
               )}
             </div>
@@ -224,10 +228,10 @@ const Index = () => {
       </div>
 
       {/* Input Area */}
-      <div className="border-t bg-card/50 backdrop-blur-sm">
-        <div className="container max-w-4xl mx-auto px-4 py-4">
+      <div className="border-t border-border/40 bg-gradient-to-r from-card/80 via-card/60 to-card/80 backdrop-blur-md shadow-lg">
+        <div className="container max-w-4xl mx-auto px-4 py-5">
           <ChatInput onSend={streamChat} disabled={isLoading} />
-          <p className="text-xs text-muted-foreground text-center mt-2">
+          <p className="text-xs text-muted-foreground/80 text-center mt-3 font-medium">
             If you think the answer is wrong ask your assistant to reread it's data base and give you the right answer.
           </p>
         </div>
