@@ -182,7 +182,7 @@ const Index = () => {
                 <span className="text-white font-bold text-xl">🏀</span>
               </div>
               <div>
-                <h1 className="text-xl font-bold text-foreground">Basketball Rules Assistant</h1>
+                <h1 className="text-xl font-bold text-foreground">RefAI</h1>
                 <p className="text-xs text-muted-foreground">FIBA 2024 Official Rules • 278 pages embedded</p>
               </div>
             </div>
@@ -228,7 +228,7 @@ const Index = () => {
         <div className="container max-w-4xl mx-auto px-4 py-4">
           <ChatInput onSend={streamChat} disabled={isLoading} />
           <p className="text-xs text-muted-foreground text-center mt-2">
-            Ask about any basketball rule, violation, or regulation
+            If you think the answer is wrong ask your assistant to reread it's data base and give you the right answer.
           </p>
         </div>
       </div>
