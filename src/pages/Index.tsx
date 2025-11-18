@@ -1,11 +1,14 @@
 import { useState, useRef, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ChatMessage } from "@/components/ChatMessage";
 import { ChatInput } from "@/components/ChatInput";
 import { SourceDataPanel } from "@/components/SourceDataPanel";
-import { Plus, Loader2 } from "lucide-react";
+import { Plus, Loader2, LogOut } from "lucide-react";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { useToast } from "@/hooks/use-toast";
+import { supabase } from "@/integrations/supabase/client";
+import { User, Session } from "@supabase/supabase-js";
 
 type Message = {
   role: "user" | "assistant";
@@ -13,6 +16,9 @@ type Message = {
 };
 
 const Index = () => {
+  const navigate = useNavigate();
+  const [user, setUser] = useState<User | null>(null);
+  const [session, setSession] = useState<Session | null>(null);
   const [messages, setMessages] = useState<Message[]>([
     {
       role: "assistant",
@@ -20,8 +26,33 @@ const Index = () => {
     },
   ]);
   const [isLoading, setIsLoading] = useState(false);
+  const [isAuthLoading, setIsAuthLoading] = useState(true);
   const scrollRef = useRef<HTMLDivElement>(null);
   const { toast } = useToast();
+
+  useEffect(() => {
+    // Set up auth state listener FIRST
+    const { data: { subscription } } = supabase.auth.onAuthStateChange(
+      (event, session) => {
+        setSession(session);
+        setUser(session?.user ?? null);
+        setIsAuthLoading(false);
+      }
+    );
+
+    // THEN check for existing session
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setSession(session);
+      setUser(session?.user ?? null);
+      setIsAuthLoading(false);
+      
+      if (!session) {
+        navigate("/auth");
+      }
+    });
+
+    return () => subscription.unsubscribe();
+  }, [navigate]);
 
   useEffect(() => {
     if (scrollRef.current) {
@@ -37,6 +68,40 @@ const Index = () => {
       },
     ]);
   };
+
+  const handleLogout = async () => {
+    try {
+      const { error } = await supabase.auth.signOut();
+      if (error) throw error;
+      
+      toast({
+        title: "Logged Out",
+        description: "You have been successfully logged out.",
+      });
+      navigate("/auth");
+    } catch (error: any) {
+      toast({
+        title: "Logout Failed",
+        description: error.message || "An error occurred during logout",
+        variant: "destructive",
+      });
+    }
+  };
+
+  if (isAuthLoading) {
+    return (
+      <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-background via-muted/30 to-basketball-blue/5">
+        <div className="text-center">
+          <Loader2 className="w-12 h-12 animate-spin text-basketball-orange mx-auto mb-4" />
+          <p className="text-muted-foreground font-semibold">Loading RefAI...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (!user) {
+    return null; // Will redirect to /auth
+  }
 
   const streamChat = async (userMessage: string) => {
     setIsLoading(true);
@@ -203,6 +268,15 @@ const Index = () => {
               >
                 <Plus className="w-4 h-4" />
                 <span className="hidden sm:inline">New Chat</span>
+              </Button>
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={handleLogout}
+                className="gap-2 bg-gradient-to-r from-basketball-blue/10 to-basketball-purple/10 hover:from-basketball-blue/20 hover:to-basketball-purple/20 border-2 border-basketball-blue/30 hover:border-basketball-blue/50 hover:scale-105 transition-all duration-200 shadow-md rounded-xl font-semibold"
+              >
+                <LogOut className="w-4 h-4" />
+                <span className="hidden sm:inline">Logout</span>
               </Button>
             </div>
           </div>
