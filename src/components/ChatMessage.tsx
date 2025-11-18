@@ -4,9 +4,10 @@ import { cn } from "@/lib/utils";
 interface ChatMessageProps {
   role: "user" | "assistant";
   content: string;
+  images?: string[];
 }
 
-export const ChatMessage = ({ role, content }: ChatMessageProps) => {
+export const ChatMessage = ({ role, content, images }: ChatMessageProps) => {
   return (
     <div
       className={cn(
@@ -30,6 +31,18 @@ export const ChatMessage = ({ role, content }: ChatMessageProps) => {
         <p className="text-sm font-medium text-foreground/80">
           {role === "user" ? "You" : "Basketball Rules Assistant"}
         </p>
+        {images && images.length > 0 && (
+          <div className="flex flex-wrap gap-2">
+            {images.map((image, idx) => (
+              <img 
+                key={idx} 
+                src={image} 
+                alt={`Attachment ${idx + 1}`} 
+                className="max-w-xs rounded-lg border border-border"
+              />
+            ))}
+          </div>
+        )}
         <div className="prose prose-sm max-w-none dark:prose-invert">
           <p className="text-foreground leading-relaxed whitespace-pre-wrap">
             {content}
