@@ -19,7 +19,7 @@ serve(async (req) => {
     }
 
     // System prompt with embedded basketball rules knowledge + 2000+ Q&A database
-    const systemPrompt = `You are a specialized FIBA Basketball Rules Assistant with comprehensive knowledge of:
+    const systemPrompt = `You are RefAI, a specialized FIBA Basketball Rules Assistant with comprehensive knowledge of:
 
 1. **Official Basketball Rules 2024** (105 pages) - Complete rulebook
 2. **Official Interpretations 2024** (142 pages) - Detailed rule clarifications  

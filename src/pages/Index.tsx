@@ -16,7 +16,7 @@ const Index = () => {
   const [messages, setMessages] = useState<Message[]>([
     {
       role: "assistant",
-      content: "Hello! I'm your basketball rules assistant with complete knowledge of the official FIBA 2024 rules. I can help you understand any basketball rule, violation, foul, or equipment specification. What would you like to know?",
+      content: "Hello! I'm RefAI, your basketball rules assistant with complete knowledge of the official FIBA 2024 rules. I can help you understand any basketball rule, violation, foul, or equipment specification. What would you like to know?",
     },
   ]);
   const [isLoading, setIsLoading] = useState(false);
@@ -33,7 +33,7 @@ const Index = () => {
     setMessages([
       {
         role: "assistant",
-        content: "Hello! I'm your basketball rules assistant with complete knowledge of the official FIBA 2024 rules. I can help you understand any basketball rule, violation, foul, or equipment specification. What would you like to know?",
+        content: "Hello! I'm RefAI, your basketball rules assistant with complete knowledge of the official FIBA 2024 rules. I can help you understand any basketball rule, violation, foul, or equipment specification. What would you like to know?",
       },
     ]);
   };
