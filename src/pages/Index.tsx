@@ -10,6 +10,7 @@ import { useToast } from "@/hooks/use-toast";
 type Message = {
   role: "user" | "assistant";
   content: string;
+  images?: string[];
 };
 
 const Index = () => {
@@ -38,9 +39,9 @@ const Index = () => {
     ]);
   };
 
-  const streamChat = async (userMessage: string) => {
+  const streamChat = async (userMessage: string, images?: string[]) => {
     setIsLoading(true);
-    const userMsg: Message = { role: "user", content: userMessage };
+    const userMsg: Message = { role: "user", content: userMessage, images };
     setMessages((prev) => [...prev, userMsg]);
 
     try {
@@ -53,10 +54,21 @@ const Index = () => {
           Authorization: `Bearer ${import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY}`,
         },
         body: JSON.stringify({ 
-          messages: [...messages, userMsg].map(m => ({ 
-            role: m.role, 
-            content: m.content 
-          }))
+          messages: [...messages, userMsg].map(m => {
+            if (m.images && m.images.length > 0) {
+              return {
+                role: m.role,
+                content: [
+                  { type: "text", text: m.content },
+                  ...m.images.map(img => ({
+                    type: "image_url",
+                    image_url: { url: img }
+                  }))
+                ]
+              };
+            }
+            return { role: m.role, content: m.content };
+          })
         }),
       });
 
@@ -208,7 +220,7 @@ const Index = () => {
           <div className="container max-w-4xl mx-auto px-4 py-6">
             <div className="space-y-4">
               {messages.map((message, index) => (
-                <ChatMessage key={index} role={message.role} content={message.content} />
+                <ChatMessage key={index} role={message.role} content={message.content} images={message.images} />
               ))}
               {isLoading && (
                 <div className="flex gap-3 p-4">
