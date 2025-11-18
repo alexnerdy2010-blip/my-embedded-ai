@@ -51,13 +51,18 @@ All colors MUST be HSL.
     /* Gradients */
     --gradient-court: linear-gradient(135deg, hsl(30 20% 85%), hsl(28 18% 78%));
     --gradient-basketball: linear-gradient(135deg, hsl(20 90% 50%), hsl(15 85% 45%));
+    --gradient-hero: linear-gradient(135deg, hsl(20 90% 50%) 0%, hsl(25 85% 55%) 50%, hsl(30 80% 60%) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(0 0% 100%) 0%, hsl(30 15% 98%) 100%);
     
     /* Shadows */
     --shadow-soft: 0 2px 20px rgba(0, 0, 0, 0.08);
     --shadow-medium: 0 4px 30px rgba(0, 0, 0, 0.12);
+    --shadow-glow: 0 8px 32px rgba(234, 88, 12, 0.15);
+    --shadow-inner: inset 0 2px 4px rgba(0, 0, 0, 0.06);
     
     /* Animations */
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 
     --sidebar-background: 0 0% 98%;
 
@@ -112,9 +117,13 @@ All colors MUST be HSL.
     
     --gradient-court: linear-gradient(135deg, hsl(25 15% 15%), hsl(25 12% 12%));
     --gradient-basketball: linear-gradient(135deg, hsl(20 90% 55%), hsl(15 85% 50%));
+    --gradient-hero: linear-gradient(135deg, hsl(20 90% 55%) 0%, hsl(25 85% 50%) 50%, hsl(30 80% 45%) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(25 20% 13%) 0%, hsl(25 18% 11%) 100%);
     
     --shadow-soft: 0 2px 20px rgba(0, 0, 0, 0.3);
     --shadow-medium: 0 4px 30px rgba(0, 0, 0, 0.4);
+    --shadow-glow: 0 8px 32px rgba(234, 88, 12, 0.25);
+    --shadow-inner: inset 0 2px 4px rgba(0, 0, 0, 0.2);
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;
