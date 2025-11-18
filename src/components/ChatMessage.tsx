@@ -28,7 +28,7 @@ export const ChatMessage = ({ role, content }: ChatMessageProps) => {
       </div>
       <div className="flex-1 space-y-2 pt-1">
         <p className="text-sm font-medium text-foreground/80">
-          {role === "user" ? "You" : "Basketball Rules Assistant"}
+          {role === "user" ? "You" : "RefAI"}
         </p>
         <div className="prose prose-sm max-w-none dark:prose-invert">
           <p className="text-foreground leading-relaxed whitespace-pre-wrap">
