@@ -178,7 +178,7 @@ const Index = () => {
         <div className="container max-w-5xl mx-auto px-4 py-5">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4">
-              <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-basketball-orange via-basketball-purple to-basketball-blue flex items-center justify-center shadow-xl hover:scale-110 hover:rotate-12 transition-all duration-300 animate-pulse"
+              <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-basketball-orange via-basketball-purple to-basketball-blue flex items-center justify-center shadow-xl hover:scale-110 hover:rotate-12 transition-all duration-300"
                 style={{
                   boxShadow: "0 8px 24px rgba(234, 88, 12, 0.35), 0 0 48px rgba(168, 85, 247, 0.2)"
                 }}
@@ -188,7 +188,7 @@ const Index = () => {
               <div>
                 <h1 className="text-2xl font-bold bg-gradient-to-r from-basketball-orange via-basketball-purple to-basketball-blue bg-clip-text text-transparent">RefAI</h1>
                 <p className="text-xs text-muted-foreground font-semibold flex items-center gap-1">
-                  <span className="w-2 h-2 rounded-full bg-basketball-green animate-pulse"></span>
+                  <span className="w-2 h-2 rounded-full bg-basketball-green"></span>
                   FIBA 2024 Official Rules • 278 pages embedded
                 </p>
               </div>

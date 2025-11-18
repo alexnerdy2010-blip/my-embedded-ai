@@ -24,7 +24,7 @@ export const ChatMessage = ({ role, content }: ChatMessageProps) => {
           "flex-shrink-0 w-11 h-11 rounded-xl flex items-center justify-center shadow-lg transition-all hover:scale-110 hover:rotate-6",
           role === "user"
             ? "bg-gradient-to-br from-basketball-purple via-basketball-blue to-secondary text-white"
-            : "bg-gradient-to-br from-basketball-orange via-primary to-warning text-white animate-pulse"
+            : "bg-gradient-to-br from-basketball-orange via-primary to-warning text-white"
         )}
         style={{
           boxShadow: role === "assistant" 
