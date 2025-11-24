@@ -1,7 +1,7 @@
 import type { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'com.refai.app',
+  appId: 'app.lovable.1afa31550c3e4aa19dd0fbcdfb4b64c8',
   appName: 'RefAI',
   webDir: 'dist',
   server: {
