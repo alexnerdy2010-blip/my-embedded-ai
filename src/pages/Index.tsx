@@ -4,11 +4,15 @@ import { Button } from "@/components/ui/button";
 import { ChatMessage } from "@/components/ChatMessage";
 import { ChatInput } from "@/components/ChatInput";
 import { SourceDataPanel } from "@/components/SourceDataPanel";
-import { Plus, Loader2, LogOut } from "lucide-react";
+import { Plus, Loader2, LogOut, CreditCard } from "lucide-react";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { User, Session } from "@supabase/supabase-js";
+import { useSubscription } from "@/hooks/useSubscription";
+import { SubscriptionPaywall } from "@/components/SubscriptionPaywall";
+import { SubscriptionManagement } from "@/components/SubscriptionManagement";
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 
 type Message = {
   role: "user" | "assistant";
@@ -19,6 +23,7 @@ const Index = () => {
   const navigate = useNavigate();
   const [user, setUser] = useState<User | null>(null);
   const [session, setSession] = useState<Session | null>(null);
+  const { subscribed, isLoading: isSubscriptionLoading } = useSubscription();
   const [messages, setMessages] = useState<Message[]>([
     {
       role: "assistant",
@@ -88,7 +93,7 @@ const Index = () => {
     }
   };
 
-  if (isAuthLoading) {
+  if (isAuthLoading || isSubscriptionLoading) {
     return (
       <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-background via-muted/30 to-basketball-blue/5">
         <div className="text-center">
@@ -101,6 +106,11 @@ const Index = () => {
 
   if (!user) {
     return null; // Will redirect to /auth
+  }
+
+  // Show paywall if user is not subscribed
+  if (!subscribed) {
+    return <SubscriptionPaywall />;
   }
 
   const streamChat = async (userMessage: string) => {
@@ -259,6 +269,21 @@ const Index = () => {
               </div>
             </div>
             <div className="flex items-center gap-3">
+              <Dialog>
+                <DialogTrigger asChild>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="gap-2 bg-gradient-to-r from-basketball-purple/10 to-basketball-blue/10 hover:from-basketball-purple/20 hover:to-basketball-blue/20 border-2 border-basketball-purple/30 hover:border-basketball-purple/50 hover:scale-105 transition-all duration-200 shadow-md rounded-xl font-semibold"
+                  >
+                    <CreditCard className="w-4 h-4" />
+                    <span className="hidden sm:inline">Subscription</span>
+                  </Button>
+                </DialogTrigger>
+                <DialogContent>
+                  <SubscriptionManagement />
+                </DialogContent>
+              </Dialog>
               <SourceDataPanel />
               <Button
                 variant="outline"
